@@ -38,28 +38,31 @@ function App() {
     }
   };
 
-  return (
-    <div className="join join-vertical">
+return (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="flex flex-col space-y-3 w-full max-w-sm">
       <input
         type="text"
-        className=""
+        className="w-full p-2 rounded-lg border border-black text-black focus:ring-2 focus:ring-gray-500"
         id="fname"
         placeholder="Enter your first name"
         value={form.fname}
         onChange={handleInputChange}
       />
+
       <input
         type="text"
-        className=""
+        className="w-full p-2 rounded-lg border border-black text-black focus:ring-2 focus:ring-gray-500"
         id="lname"
         placeholder="Enter your last name"
         value={form.lname}
         onChange={handleInputChange}
       />
+
       <input
         type="text"
         id="section_year"
-        className="section_year"
+        className="w-full p-2 rounded-lg border border-black text-black focus:ring-2 focus:ring-gray-500"
         placeholder="ex: BSCS-2A"
         value={form.section_year}
         onChange={handleInputChange}
@@ -67,25 +70,29 @@ function App() {
 
       <input
         type="text"
-        className=""
+        className="w-full p-2 rounded-lg border border-black text-black focus:ring-2 focus:ring-gray-500"
         id="student_id"
         placeholder="Enter your student id"
         value={form.student_id}
         onChange={handleInputChange}
       />
 
-      <button className="" id="generate-btn" onClick={handleGenerate}>
+      <button
+        className="mt-2 px-4 py-2 rounded-lg border border-black text-black hover:bg-gray-100"
+        id="generate-btn"
+        onClick={handleGenerate}
+      >
         Generate
       </button>
+
       {qrCode && (
-        <div style={{ marginTop: "2rem" }}>
+        <div className="mt-6 flex justify-center">
           <img src={qrCode} alt="QR Code" />
         </div>
       )}
-
     </div>
-    
-  );
+  </div>
+);
 }
 
 export default App;
