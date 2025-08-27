@@ -12,8 +12,8 @@ function App() {
   const [qrCode, setQrCode] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { className, value } = e.target;
-    setForm((prev) => ({ ...prev, [className.toLowerCase()]: value }));
+    const { id, value } = e.target;
+    setForm((prev) => ({ ...prev, [id.toLowerCase()]: value }));
   };
 
   const handleGenerate = async () => {
@@ -42,20 +42,23 @@ function App() {
     <div className="join join-vertical">
       <input
         type="text"
-        className="fname"
+        className=""
+        id="fname"
         placeholder="Enter your first name"
         value={form.fname}
         onChange={handleInputChange}
       />
       <input
         type="text"
-        className="lname"
+        className=""
+        id="lname"
         placeholder="Enter your last name"
         value={form.lname}
         onChange={handleInputChange}
       />
       <input
         type="text"
+        id="section_year"
         className="section_year"
         placeholder="ex: BSCS-2A"
         value={form.section_year}
@@ -64,13 +67,14 @@ function App() {
 
       <input
         type="text"
-        className="student_id"
+        className=""
+        id="student_id"
         placeholder="Enter your student id"
         value={form.student_id}
         onChange={handleInputChange}
       />
 
-      <button className="generate-btn" onClick={handleGenerate}>
+      <button className="" id="generate-btn" onClick={handleGenerate}>
         Generate
       </button>
       {qrCode && (
@@ -78,11 +82,7 @@ function App() {
           <img src={qrCode} alt="QR Code" />
         </div>
       )}
-      <div className="join join-horizontal">
-  <button className="btn join-item">Button</button>
-  <button className="btn join-item">Button</button>
-  <button className="btn join-item">Button</button>
-</div>
+
     </div>
     
   );
