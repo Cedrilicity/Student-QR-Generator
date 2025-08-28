@@ -1,42 +1,157 @@
 @import "tailwindcss";
 
+/* NCF Custom Color Palette */
+:root {
+  --ncf-green-primary: #166534;
+  --ncf-green-secondary: #15803d;
+  --ncf-green-light: #22c55e;
+  --ncf-gold-primary: #eab308;
+  --ncf-gold-secondary: #f59e0b;
+  --ncf-gold-light: #fbbf24;
+}
+
+
+/* Custom animations */
 @keyframes fade-in {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-        
-@keyframes slide-up {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-        
-@keyframes zoom-in {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+  }
 }
-        
-@keyframes bounce-in {
-    0% { opacity: 0; transform: translateY(-10px) scale(0.9); }
-    50% { opacity: 1; transform: translateY(-5px) scale(1.05); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+
+@keyframes ncf-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(22, 101, 52, 0.4), 0 0 20px rgba(234, 179, 8, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(22, 101, 52, 0.6), 0 0 30px rgba(234, 179, 8, 0.5);
+  }
 }
-        
+
 .animate-fade-in {
-    animation: fade-in 0.6s ease-out;
+  animation: fade-in 0.5s ease-out;
 }
-        
-.animate-fade-in-delayed {
-    animation: fade-in 0.6s ease-out 0.3s both;
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-out;
 }
-        
-.animate-slide-up {
-    animation: slide-up 0.8s ease-out 0.2s both;
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
 }
-        
-.animate-zoom-in {
-    animation: zoom-in 0.6s ease-out;
+
+.animate-ncf-glow {
+  animation: ncf-glow 3s infinite;
 }
-        
-.animate-bounce-in {
-    animation: bounce-in 0.5s ease-out;
+
+/* Custom scrollbar with NCF colors */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f0fdf4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--ncf-green-primary), var(--ncf-gold-primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--ncf-green-secondary), var(--ncf-gold-secondary));
+}
+
+/* Focus states */
+input:focus {
+  outline: none;
+}
+
+/* NCF gradient backgrounds */
+.ncf-gradient-bg {
+  background: linear-gradient(135deg, var(--ncf-green-primary) 0%, var(--ncf-gold-primary) 100%);
+}
+
+.ncf-gradient-text {
+  background: linear-gradient(135deg, var(--ncf-green-primary), var(--ncf-gold-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass effect with NCF theme */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(22, 101, 52, 0.15);
+}
+
+
+/* Mobile View */
+@layer utilities {
+ 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .no-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+  }
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 640px) {
+  .grid-responsive {
+    grid-template-columns: 2fr;
+  }
+}
+
+/* Text selection with NCF colors */
+::selection {
+  background: rgba(22, 101, 52, 0.3);
+  color: inherit;
+}
+
+/* NCF badge styles */
+.ncf-badge {
+  background: linear-gradient(135deg, var(--ncf-green-primary), var(--ncf-green-secondary));
+  color: var(--ncf-gold-light);
+  border: 1px solid var(--ncf-gold-primary);
 }
