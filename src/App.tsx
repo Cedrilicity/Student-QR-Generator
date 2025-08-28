@@ -197,7 +197,7 @@ function App() {
               <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Download NCF QR Code
+              Download
             </button>
             
             <div className="bg-gradient-to-r from-green-50 to-yellow-50 rounded-xl p-6 border border-green-200 shadow-inner ring-1 ring-green-100">
