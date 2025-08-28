@@ -115,7 +115,7 @@ function App() {
       setShowSuccess(true);
       
       // Show Success Notification
-      setTimeout(() => setShowSuccess(true));
+      setTimeout(() => setShowSuccess(false),2000);
       
     } catch (err) {
       console.error('QR generation error:', err);
