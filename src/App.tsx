@@ -480,7 +480,7 @@ function App() {
                       <svg className="w-8 h-8 mr-3 generate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h4M4 8h4m4 0V4m0 0h4m0 0v4m0 0h4m0 4h-4M8 12V8m0 0H4m0 0v4m0 0h4" />
                       </svg>
-                      Generate QR
+                      Generate
                     </>
                   )}
                 </button>
