@@ -10,6 +10,7 @@
   --ncf-gold-light: #fbbf24;
 }
 
+
 /* Custom animations */
 @keyframes fade-in {
   from {
@@ -120,10 +121,25 @@ input:focus {
   box-shadow: 0 10px 25px rgba(22, 101, 52, 0.15);
 }
 
+
+/* Mobile View */
+@layer utilities {
+ 
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .no-scrollbar {
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+  }
+}
+
 /* Mobile responsiveness improvements */
 @media (max-width: 640px) {
   .grid-responsive {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr;
   }
 }
 
