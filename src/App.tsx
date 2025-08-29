@@ -386,34 +386,30 @@ function App() {
                       onChange={handleInputChange}
                     >
                       <option value="">Select Course/Year/Section</option>
-                      
-                      {/* Fourth Year */}
-                      <option value="BSCS 4">BSCS 4</option>
-                      <option value="BSIS 4">BSIS 4</option>
-
-                      {/* Third Year */}
+                      {/* BSCS */}
+                      <option value="BSCS 1A">BSCS 1A</option>
+                      <option value="BSCS 2A">BSCS 2A</option>
                       <option value="BSCS 3A">BSCS 3A</option>
                       <option value="BSCS 3B">BSCS 3B</option>
+                      <option value="BSCS 4">BSCS 4</option>
+                      {/* BSIS */}
+                      <option value="BSIS 1A">BSIS 1A</option>
+                      <option value="BSIS 2A">BSIS 2A</option>
                       <option value="BSIS 3A">BSIS 3A</option>
                       <option value="BSIS 3B">BSIS 3B</option>
-
-                      {/* Second Year */}
-                      <option value="BSCS 2A">BSCS 2A</option>
-                      <option value="BSIS 2A">BSIS 2A</option>
-                      <option value="BSIT 2A">BSIT 2A</option>
-                      <option value="BSIT 2B">BSIT 2B</option>
-                      <option value="BSIT 2C">BSIT 2C</option>
-                      <option value="BSIT 2D">BSIT 2D</option>
-                      <option value="ACT 2A">ACT 2A</option>
-
-                      {/* First Year */}
-                      <option value="BSCS 1A">BSCS 1A</option>
-                      <option value="BSIS 1A">BSIS 1A</option>
+                      <option value="BSIS 4">BSIS 4</option>
+                      {/* BSIT */}
                       <option value="BSIT 1A">BSIT 1A</option>
                       <option value="BSIT 1B">BSIT 1B</option>
                       <option value="BSIT 1C">BSIT 1C</option>
                       <option value="BSIT 1D">BSIT 1D</option>
+                      <option value="BSIT 2A">BSIT 2A</option>
+                      <option value="BSIT 2B">BSIT 2B</option>
+                      <option value="BSIT 2C">BSIT 2C</option>
+                      <option value="BSIT 2D">BSIT 2D</option>
+                      {/* ACT */}
                       <option value="ACT 1A">ACT 1A</option>
+                      <option value="ACT 2A">ACT 2A</option>
                     </select>
 
                     <div
