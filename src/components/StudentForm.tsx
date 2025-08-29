@@ -24,6 +24,7 @@ interface StudentFormProps {
   onGenerate: () => void;
   onReset: () => void;
   onViewQR: () => void;
+  disabled?: boolean;
 }
 
 const StudentForm: React.FC<StudentFormProps> = ({
@@ -36,6 +37,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
   onGenerate,
   onReset,
   onViewQR,
+  disabled,
 }) => (
   <div className="bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-5 border border-green-200/30 hover:shadow-3xl transition-all duration-500 ring-1 ring-green-100/50">
     <div className="mb-8 p-1">
@@ -63,6 +65,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
               placeholder="Enter first name"
               value={form.fname}
               onChange={onInputChange}
+              disabled={disabled}
             />
             <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
               form.fname ? 'scale-x-100' : 'scale-x-0'
@@ -94,6 +97,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
               placeholder="Enter last name"
               value={form.lname}
               onChange={onInputChange}
+              disabled={disabled}
             />
             <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
               form.lname ? 'scale-x-100' : 'scale-x-0'
@@ -123,6 +127,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
               } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800`}
               value={form.section_year}
               onChange={onInputChange}
+              disabled={disabled}
             >
               <option value="">Select Course/Year/Section</option>
               {/* BSCS */}
@@ -182,6 +187,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
               placeholder="e.g., 12-34567"
               value={form.student_id}
               onChange={onInputChange}
+              disabled={disabled}
             />
             <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
               form.student_id ? 'scale-x-100' : 'scale-x-0'

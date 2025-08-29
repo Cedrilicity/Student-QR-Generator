@@ -86,6 +86,8 @@ function App() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
+    if (typeof form.fname.trim() == 'string') newErrors.fname = "First Name must be String";
+    if (typeof form.lname.trim() == 'string') newErrors.lname = "Last Name must be String";
     if (!form.fname.trim()) newErrors.fname = "First name is required";
     if (!form.lname.trim()) newErrors.lname = "Last name is required";
     if (!form.section_year.trim()) newErrors.section_year = "Section/Year is required";
@@ -212,6 +214,7 @@ function App() {
             onGenerate={handleGenerate}
             onReset={handleReset}
             onViewQR={handleViewQR}
+            disabled={!!qrCode}
           />
 
           {/* Desktop QR Code Preview (Right Panel) */}
