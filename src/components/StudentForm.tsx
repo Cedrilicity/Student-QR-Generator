@@ -233,7 +233,7 @@ const StudentForm: React.FC<StudentFormProps> = ({
       {/* Mobile QR Code Success and View Button */}
       {qrCode && isMobile && (
         <div className="mt-6 pt-6 border-t border-green-200">
-          <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl shadow-lg animate-slide-down ring-1 ring-green-100 mb-4">
+          <div className="bg-gradient-to-r from-green-50 to-yellow-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl shadow-lg animate-slide-down ring-1 ring-green-100 mb-10">
             <div className="flex items-center justify-center">
               <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                 <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
