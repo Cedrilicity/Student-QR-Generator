@@ -86,10 +86,17 @@ function App() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    if (typeof form.fname.trim() == 'string') newErrors.fname = "First Name must be String";
-    if (typeof form.lname.trim() == 'string') newErrors.lname = "Last Name must be String";
-    if (!form.fname.trim()) newErrors.fname = "First name is required";
-    if (!form.lname.trim()) newErrors.lname = "Last name is required";
+    // Only allow alphabetic characters, spaces, and hyphens for names
+    if (!form.fname.trim()) {
+      newErrors.fname = "First name is required";
+    } else if (!/^[A-Za-z\s'-]+$/.test(form.fname)) {
+      newErrors.fname = "First name must only contain letters";
+    }
+    if (!form.lname.trim()) {
+      newErrors.lname = "Last name is required";
+    } else if (!/^[A-Za-z\s'-]+$/.test(form.lname)) {
+      newErrors.lname = "Last name must only contain letters";
+    }
     if (!form.section_year.trim()) newErrors.section_year = "Section/Year is required";
     if (!form.student_id.trim()) {
       newErrors.student_id = "Student ID is required";
