@@ -60,9 +60,18 @@ function App() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { id, value } = e.target;
-    setForm((prev) => ({ ...prev, [id]: value }));
-
-    // Clear error for this field when user starts typing
+    if (id === "student_id") {
+      // Only allow numbers and hyphen, auto-insert hyphen after two digits
+      let sanitized = value.replace(/[^0-9-]/g, "");
+      if (sanitized.length === 2 && !sanitized.includes("-")) {
+        sanitized = sanitized + "-";
+      }
+      // Prevent more than 8 chars (2 digits + hyphen + 5 digits)
+      sanitized = sanitized.slice(0, 8);
+      setForm((prev) => ({ ...prev, student_id: sanitized }));
+    } else {
+      setForm((prev) => ({ ...prev, [id]: value }));
+    }
     if (errors[id as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [id]: "" }));
     }
@@ -71,17 +80,14 @@ function App() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    
     if (!form.fname.trim()) newErrors.fname = "First name is required";
     if (!form.lname.trim()) newErrors.lname = "Last name is required";
     if (!form.section_year.trim()) newErrors.section_year = "Section/Year is required";
-    if (!form.student_id.trim()) newErrors.student_id = "Student ID is required";
-    
-    // Validate student ID format (basic validation)
-    if (form.student_id && !/^[A-Za-z0-9-]+$/.test(form.student_id)) {
-      newErrors.student_id = "Student ID can only contain letters, numbers, and hyphens";
+    if (!form.student_id.trim()) {
+      newErrors.student_id = "Student ID is required";
+    } else if (!/^\d{2}-\d{5}$/.test(form.student_id)) {
+      newErrors.student_id = "Student ID must be in the format 00-00000 (two digits, hyphen, five digits)";
     }
-    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -440,12 +446,14 @@ function App() {
                     <input
                       type="text"
                       id="student_id"
+                      inputMode="numeric"
+                      pattern="\d{2}-\d{5}"
                       className={`w-full px-4 py-4 rounded-xl border-2 ${
                         errors.student_id 
                           ? 'border-red-300 bg-red-50 focus:border-red-500' 
                           : 'border-green-600 focus:border-green-700 bg-green-50/50'
                       } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
-                      placeholder="e.g., NCF-2024-001234"
+                      placeholder="e.g., 12-34567"
                       value={form.student_id}
                       onChange={handleInputChange}
                     />
