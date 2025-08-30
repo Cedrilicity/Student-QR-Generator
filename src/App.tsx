@@ -188,7 +188,7 @@ function App() {
   return (
     <>
     <Header/>
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 py-8 px-4 mb-0">
       {/* Background decorative elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-green-400/20 to-yellow-400/20 rounded-full blur-3xl"></div>
