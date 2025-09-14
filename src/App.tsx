@@ -12,6 +12,7 @@ interface FormData {
   lname: string;
   section_year: string;
   student_id: string;
+  email: string;
 }
 
 interface FormErrors {
@@ -19,6 +20,7 @@ interface FormErrors {
   lname?: string;
   section_year?: string;
   student_id?: string;
+  email?: string;
 }
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
     lname: "",
     section_year: "",
     student_id: "",
+    email: "",
   });
   
   const [errors, setErrors] = useState<FormErrors>({});
@@ -103,6 +106,11 @@ function App() {
     } else if (!/^\d{2}-\d{5}$/.test(form.student_id)) {
       newErrors.student_id = "Student ID must be in the format 00-00000 (two digits, hyphen, five digits)";
     }
+    if (!form.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[a-zA-Z0-9._%+-]+@gbox\.ncf\.edu\.ph$/.test(form.email)) {
+      newErrors.email = "Email must be in the format example@gbox.ncf.edu.ph";
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -117,6 +125,7 @@ function App() {
       last_name: form.lname.trim(),
       course_year_section: form.section_year.trim(),
       student_id: form.student_id.trim(),
+      email: form.email.trim(),
       generated_at: new Date().toISOString(),
       academic_year: "2024-2025"
     };
@@ -163,6 +172,7 @@ function App() {
       lname: "",
       section_year: "",
       student_id: "",
+      email: "",
     });
     setErrors({});
     setQrCode(null);
@@ -183,6 +193,7 @@ function App() {
     !!form.lname,
     !!form.section_year,
     !!form.student_id,
+    !!form.email,
   ];
 
   return (

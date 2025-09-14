@@ -5,6 +5,7 @@ interface FormData {
   lname: string;
   section_year: string;
   student_id: string;
+  email: string;
 }
 
 interface FormErrors {
@@ -12,6 +13,7 @@ interface FormErrors {
   lname?: string;
   section_year?: string;
   student_id?: string;
+  email?: string;
 }
 
 interface StudentFormProps {
@@ -47,162 +49,204 @@ const StudentForm: React.FC<StudentFormProps> = ({
       <p className="text-green-700">Enter the student details to generate an official NCF QR code</p>
     </div>
     <div className="space-y-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-1">
-        {/* First Name */}
+      <div className="p-1">
+        {/* First two rows in 2-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+          {/* First Name */}
+          <div className="group">
+            <label htmlFor="fname" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
+              First Name *
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                id="fname"
+                className={`w-full px-4 py-4 rounded-xl border-2 ${
+                  errors.fname 
+                    ? 'border-red-300 bg-red-50 focus:border-red-500' 
+                    : 'border-green-600 focus:border-green-700 bg-green-50/50'
+                } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
+                placeholder="Enter first name"
+                value={form.fname}
+                onChange={onInputChange}
+                disabled={disabled}
+              />
+              <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
+                form.fname ? 'scale-x-100' : 'scale-x-0'
+              }`}></div>
+            </div>
+            {errors.fname && (
+              <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {errors.fname}
+              </p>
+            )}
+          </div>
+          {/* Last Name */}
+          <div className="group">
+            <label htmlFor="lname" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
+              Last Name *
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                id="lname"
+                className={`w-full px-4 py-4 rounded-xl border-2 ${
+                  errors.lname 
+                    ? 'border-red-300 bg-red-50 focus:border-red-500' 
+                    : 'border-green-600 focus:border-green-700 bg-green-50/50'
+                } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
+                placeholder="Enter last name"
+                value={form.lname}
+                onChange={onInputChange}
+                disabled={disabled}
+              />
+              <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
+                form.lname ? 'scale-x-100' : 'scale-x-0'
+              }`}></div>
+            </div>
+            {errors.lname && (
+              <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {errors.lname}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Second row in 2-column grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+          {/* Section/Year */}
+          <div className="group">
+            <label htmlFor="section_year" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
+              Course/Year/Section *
+            </label>
+            <div className="relative">
+              <select
+                id="section_year"
+                className={`w-full px-4 py-4 rounded-xl border-2 ${
+                  errors.section_year
+                    ? 'border-red-300 bg-red-50 focus:border-red-500'
+                    : 'border-green-600 focus:border-green-700 bg-green-50/50'
+                } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800`}
+                value={form.section_year}
+                onChange={onInputChange}
+                disabled={disabled}
+              >
+                <option value="">Select Course/Year/Section</option>
+                {/* BSCS */}
+                <option value="BSCS 1A">BSCS 1A</option>
+                <option value="BSCS 2A">BSCS 2A</option>
+                <option value="BSCS 3A">BSCS 3A</option>
+                <option value="BSCS 3B">BSCS 3B</option>
+                <option value="BSCS 4">BSCS 4</option>
+                {/* BSIS */}
+                <option value="BSIS 1A">BSIS 1A</option>
+                <option value="BSIS 2A">BSIS 2A</option>
+                <option value="BSIS 3A">BSIS 3A</option>
+                <option value="BSIS 3B">BSIS 3B</option>
+                <option value="BSIS 4">BSIS 4</option>
+                {/* BSIT */}
+                <option value="BSIT 1A">BSIT 1A</option>
+                <option value="BSIT 1B">BSIT 1B</option>
+                <option value="BSIT 1C">BSIT 1C</option>
+                <option value="BSIT 1D">BSIT 1D</option>
+                <option value="BSIT 2A">BSIT 2A</option>
+                <option value="BSIT 2B">BSIT 2B</option>
+                <option value="BSIT 2C">BSIT 2C</option>
+                <option value="BSIT 2D">BSIT 2D</option>
+                {/* ACT */}
+                <option value="ACT 1A">ACT 1A</option>
+                <option value="ACT 2A">ACT 2A</option>
+              </select>
+              <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
+                form.section_year ? 'scale-x-100' : 'scale-x-0'
+              }`}></div>
+            </div>
+            {errors.section_year && (
+              <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {errors.section_year}
+              </p>
+            )}
+          </div>
+          {/* Student ID */}
+          <div className="group">
+            <label htmlFor="student_id" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
+              Student ID *
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                id="student_id"
+                inputMode="numeric"
+                pattern="\d{2}-\d{5}"
+                className={`w-full px-4 py-4 rounded-xl border-2 ${
+                  errors.student_id 
+                    ? 'border-red-300 bg-red-50 focus:border-red-500' 
+                    : 'border-green-600 focus:border-green-700 bg-green-50/50'
+                } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
+                placeholder="e.g., 12-34567"
+                value={form.student_id}
+                onChange={onInputChange}
+                disabled={disabled}
+              />
+              <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
+                form.student_id ? 'scale-x-100' : 'scale-x-0'
+              }`}></div>
+            </div>
+            {errors.student_id && (
+              <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {errors.student_id}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Email */}
         <div className="group">
-          <label htmlFor="fname" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
-            First Name *
+          <label htmlFor="email" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
+            Email *
           </label>
           <div className="relative">
             <input
-              type="text"
-              id="fname"
+              type="email"
+              id="email"
               className={`w-full px-4 py-4 rounded-xl border-2 ${
-                errors.fname 
+                errors.email 
                   ? 'border-red-300 bg-red-50 focus:border-red-500' 
                   : 'border-green-600 focus:border-green-700 bg-green-50/50'
               } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
-              placeholder="Enter first name"
-              value={form.fname}
+              placeholder="e.g., example@gbox.ncf.edu.ph"
+              value={form.email}
               onChange={onInputChange}
               disabled={disabled}
             />
             <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
-              form.fname ? 'scale-x-100' : 'scale-x-0'
-            }`}></div>
+              form.email ? 'scale-x-100' : 'scale-x-0'
+              }`}>
+            </div>
           </div>
-          {errors.fname && (
+          {errors.email && (
             <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
               </svg>
-              {errors.fname}
-            </p>
-          )}
-        </div>
-        {/* Last Name */}
-        <div className="group">
-          <label htmlFor="lname" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
-            Last Name *
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              id="lname"
-              className={`w-full px-4 py-4 rounded-xl border-2 ${
-                errors.lname 
-                  ? 'border-red-300 bg-red-50 focus:border-red-500' 
-                  : 'border-green-600 focus:border-green-700 bg-green-50/50'
-              } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
-              placeholder="Enter last name"
-              value={form.lname}
-              onChange={onInputChange}
-              disabled={disabled}
-            />
-            <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
-              form.lname ? 'scale-x-100' : 'scale-x-0'
-            }`}></div>
-          </div>
-          {errors.lname && (
-            <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              {errors.lname}
-            </p>
-          )}
-        </div>
-        {/* Section/Year */}
-        <div className="group">
-          <label htmlFor="section_year" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
-            Course/Year/Section *
-          </label>
-          <div className="relative">
-            <select
-              id="section_year"
-              className={`w-full px-4 py-4 rounded-xl border-2 ${
-                errors.section_year
-                  ? 'border-red-300 bg-red-50 focus:border-red-500'
-                  : 'border-green-600 focus:border-green-700 bg-green-50/50'
-              } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800`}
-              value={form.section_year}
-              onChange={onInputChange}
-              disabled={disabled}
-            >
-              <option value="">Select Course/Year/Section</option>
-              {/* BSCS */}
-              <option value="BSCS 1A">BSCS 1A</option>
-              <option value="BSCS 2A">BSCS 2A</option>
-              <option value="BSCS 3A">BSCS 3A</option>
-              <option value="BSCS 3B">BSCS 3B</option>
-              <option value="BSCS 4">BSCS 4</option>
-              {/* BSIS */}
-              <option value="BSIS 1A">BSIS 1A</option>
-              <option value="BSIS 2A">BSIS 2A</option>
-              <option value="BSIS 3A">BSIS 3A</option>
-              <option value="BSIS 3B">BSIS 3B</option>
-              <option value="BSIS 4">BSIS 4</option>
-              {/* BSIT */}
-              <option value="BSIT 1A">BSIT 1A</option>
-              <option value="BSIT 1B">BSIT 1B</option>
-              <option value="BSIT 1C">BSIT 1C</option>
-              <option value="BSIT 1D">BSIT 1D</option>
-              <option value="BSIT 2A">BSIT 2A</option>
-              <option value="BSIT 2B">BSIT 2B</option>
-              <option value="BSIT 2C">BSIT 2C</option>
-              <option value="BSIT 2D">BSIT 2D</option>
-              {/* ACT */}
-              <option value="ACT 1A">ACT 1A</option>
-              <option value="ACT 2A">ACT 2A</option>
-            </select>
-            <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
-              form.section_year ? 'scale-x-100' : 'scale-x-0'
-            }`}></div>
-          </div>
-          {errors.section_year && (
-            <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              {errors.section_year}
-            </p>
-          )}
-        </div>
-        {/* Student ID */}
-        <div className="group">
-          <label htmlFor="student_id" className="block text-sm font-semibold text-green-800 mb-3 group-focus-within:text-green-600 transition-colors">
-            Student ID *
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              id="student_id"
-              inputMode="numeric"
-              pattern="\d{2}-\d{5}"
-              className={`w-full px-4 py-4 rounded-xl border-2 ${
-                errors.student_id 
-                  ? 'border-red-300 bg-red-50 focus:border-red-500' 
-                  : 'border-green-600 focus:border-green-700 bg-green-50/50'
-              } focus:ring-4 focus:ring-green-500/10 transition-all duration-300 text-green-800 placeholder-green-500`}
-              placeholder="e.g., 12-34567"
-              value={form.student_id}
-              onChange={onInputChange}
-              disabled={disabled}
-            />
-            <div className={`absolute inset-x-3 bottom-0 h-0.5 bg-gradient-to-r from-green-500 to-yellow-500 transform origin-left transition-transform duration-300 ${
-              form.student_id ? 'scale-x-100' : 'scale-x-0'
-            }`}></div>
-          </div>
-          {errors.student_id && (
-            <p className="text-red-500 text-sm mt-2 flex items-center gap-2 animate-fade-in">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              {errors.student_id}
-            </p>
-          )}
+                {errors.email}
+              </p>
+            )}
         </div>
       </div>
+
       <div className="flex gap-5 pt-6">
         <button
           onClick={onGenerate}

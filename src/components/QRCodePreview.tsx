@@ -8,6 +8,7 @@ interface QRCodePreviewProps {
     lname: string;
     section_year: string;
     student_id: string;
+    email: string;
   };
   onDownload: () => void;
 }
@@ -72,9 +73,13 @@ const QRCodePreview: React.FC<QRCodePreviewProps> = ({ qrCode, showSuccess, form
                   <span className="font-medium text-green-600">Course/Year/Section:</span>
                   <span className="text-green-900">{form.section_year}</span>
                 </div>
-                <div className="flex justify-between items-center py-2">
+                <div className="flex justify-between items-center py-2 border-b border-green-200">
                   <span className="font-medium text-green-600">Student ID:</span>
                   <span className="text-green-900 font-mono">{form.student_id}</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="font-medium text-green-600">Email:</span>
+                  <span className="text-green-900 font-mono">{form.email}</span>
                 </div>
               </div>
             </div>
